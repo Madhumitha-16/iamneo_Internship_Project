@@ -13,5 +13,18 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1"
-  }
+  },
+  "description": "Google Keep App - Replica\r -------------------------------------------\r Tech Stack:\r - React.js\r - Node.js\r - Express.js\r - MySQL",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madhumitha-16/iamneo_Internship_Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Madhumitha-16/iamneo_Internship_Project/issues"
+  },
+  "homepage": "https://github.com/Madhumitha-16/iamneo_Internship_Project#readme"
 }
