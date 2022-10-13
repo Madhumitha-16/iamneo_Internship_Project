@@ -1,5 +1,6 @@
 import "./App.css";
 import * as React from "react";
+import { useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -19,25 +20,22 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-// import Badge from "@mui/material/Badge";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-// import MailIcon from "@mui/icons-material/Mail";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
 import ReplayOutlinedIcon from "@mui/icons-material/ReplayOutlined";
 import ViewAgendaOutlinedIcon from "@mui/icons-material/ViewAgendaOutlined";
 import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
-
+import CreateArea from "./components/CreateArea";
+import Note from "./components/Note";
+import Count from "./components/Count";
 function App() {
   const drawerWidth = 240;
-
   const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -46,7 +44,19 @@ function App() {
     }),
     overflowX: "hidden",
   });
+  const [notes, setNotes] = useState([]);
 
+  function addNote(newNote) {
+    setNotes((prevValue) => {
+      return [...prevValue, newNote];
+    });
+  }
+
+  function deleteNotes(id) {
+    setNotes((preValue) => {
+      return [...preValue.filter((note, index) => index !== id)];
+    });
+  }
   const closedMixin = (theme) => ({
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -64,7 +74,6 @@ function App() {
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   }));
 
@@ -141,7 +150,6 @@ function App() {
     color: "inherit",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create("width"),
       width: "100%",
@@ -150,28 +158,7 @@ function App() {
       },
     },
   }));
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  // const isMenuOpen = Boolean(anchorEl);
-  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  // const handleProfileMenuOpen = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleMobileMenuClose = () => {
-  //   setMobileMoreAnchorEl(null);
-  // };
-
-  // const handleMenuClose = () => {
-  //   setAnchorEl(null);
-  //   handleMobileMenuClose();
-  // };
-
-  // const handleMobileMenuOpen = (event) => {
-  //   setMobileMoreAnchorEl(event.currentTarget);
-  // };
   const menuId = "primary-search-account-menu";
   return (
     <Box sx={{ display: "flex" }}>
@@ -195,14 +182,14 @@ function App() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Archive
+            Keep
           </Typography>
-          <Search sx={{ border: "2px solid black" }}>
+          <Search sx={{ backgroundColor:"#F1F3F4", width:"70px"}}>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon sx={{color:"#65696D"}}/>
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
@@ -261,6 +248,7 @@ function App() {
           </IconButton>
         </DrawerHeader>
         <Divider />
+        
         <List>
           {["Notes", "Remainder", "Edit Labels", "Archive", "Trash"].map(
             (text, index) => (
@@ -297,33 +285,27 @@ function App() {
             )
           )}
         </List>
-        {/* <Divider /> */}
-        {/* <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem> */}
-        {/* ))}
-        </List> */}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <div className="App">
+      <Count
+        count={
+          notes.length === 0
+            ? "No Note in Database"
+            : `Showing ${notes.length} Notes in Database`
+        }
+      />
+      <CreateArea onAdd={addNote} />
+      {notes.map((note, index) => (
+        <Note
+          key={index}
+          id={index}
+          title={note.title}
+          content={note.content}
+          onDelete={deleteNotes}
+        />
+      ))}
+    </div>
         <DrawerHeader />
       </Box>
     </Box>
