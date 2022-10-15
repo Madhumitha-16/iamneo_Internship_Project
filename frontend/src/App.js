@@ -1,9 +1,9 @@
 import "./App.css";
 import * as React from "react";
-import axios from "axios";
 import { useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { styled, useTheme } from "@mui/material/styles";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -47,16 +47,6 @@ function App() {
   });
   const [notes, setNotes] = useState([]);
 
-  axios({
-    method: "GET",
-    url: "http://localhost:5000/",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    console.log(res.data.message);
-  });
-
   function addNote(newNote) {
     setNotes((prevValue) => {
       return [...prevValue, newNote];
@@ -64,6 +54,14 @@ function App() {
   }
 
   function deleteNotes(id) {
+    axios({
+      method: "GET",
+      url: "http://localhost:5000/notedel",
+      params: {
+        id:5,
+    },
+
+    })
     setNotes((preValue) => {
       return [...preValue.filter((note, index) => index !== id)];
     });

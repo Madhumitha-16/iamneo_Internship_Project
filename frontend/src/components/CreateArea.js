@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
-
+import axios from "axios";
 function CreateArea({ onAdd }) {
   const [isExpanded, setExpanded] = useState(false);
 
@@ -30,6 +30,21 @@ function CreateArea({ onAdd }) {
       content: "",
     });
     event.preventDefault();
+
+    let title = document.getElementById("title").value;
+    let content = document.getElementById("content").value;
+    console.log(title);
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/save",
+      params: {
+        title:title,
+        content:content,
+    },
+
+    }).then(res => {
+      console.log("Note created");
+    });
   }
 
   return (

@@ -27,12 +27,12 @@ router.get('/notes', function(req, res, next) {
     res.send(result);
     console.log('record deleted');
   });
-  res.send({ message: "We did it!" });
+  res.send({ message: "connected!" });
 });
 
-router.post('/notedel', function (req, res) {
-  var id=req.body.id;
-  console.log('id'+id);
+router.get('/notedel', function (req, res) {
+  var id=req.query.id;
+  console.log(id);
   var sql = `DELETE FROM task WHERE id="${id}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
@@ -42,9 +42,13 @@ router.post('/notedel', function (req, res) {
 });
 
 router.post('/update', (req, res) => {
-  var id = req.body.id;
-  var title = req.body.title;
-  var sql = `UPDATE task set title="${title}" WHERE id="${id}"`;
+  var id = req.query.id;
+  var title = req.query.title;
+  if (title==" ") {
+    var sql = `UPDATE task set title="${title}" WHERE id="${id}"`;
+  } else {
+    var sql = `UPDATE task set title="${title}" WHERE id="${id}"`;
+  }
   connection.query(sql, function(err, result) {
     if (err) throw err;
     console.log('record updated');
@@ -53,13 +57,14 @@ router.post('/update', (req, res) => {
 })
 
 router.post('/save', function (req, res) {
-  var id=req.body.id;
-  var title=req.body.title;
-  var note_type_id=req.body.note_type_id;
+var id=11;
+  var title=req.query.title;
+  var note_type_id=1;
+  console.log(req.query);
   var sql = `INSERT INTO task ( id, title, note_type_id) VALUES ("${id}","${title}","${note_type_id}")`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
-    console.log('record inserted');
+    console.log(title);
     res.send("You got it Madhu!!!");
   });
 });
