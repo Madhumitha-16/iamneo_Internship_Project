@@ -1,5 +1,6 @@
 import "./App.css";
 import * as React from "react";
+import axios from "axios";
 import { useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { styled, useTheme } from "@mui/material/styles";
@@ -45,6 +46,16 @@ function App() {
     overflowX: "hidden",
   });
   const [notes, setNotes] = useState([]);
+
+  axios({
+    method: "GET",
+    url: "http://localhost:5000/",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    console.log(res.data.message);
+  });
 
   function addNote(newNote) {
     setNotes((prevValue) => {

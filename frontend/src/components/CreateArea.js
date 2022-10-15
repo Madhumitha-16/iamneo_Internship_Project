@@ -34,9 +34,10 @@ function CreateArea({ onAdd }) {
 
   return (
     <div>
-      <form>
+      <form action="/save" method="post">
         {isExpanded && (
           <input
+            id="title"
             value={note.title}
             type="text"
             placeholder="Title"
@@ -46,6 +47,7 @@ function CreateArea({ onAdd }) {
         )}
         <p>
           <textarea
+            id="content"
             value={note.content}
             onClick={handleExpanded}
             name="content"
