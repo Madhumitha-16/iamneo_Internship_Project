@@ -21,19 +21,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/notes', function(req, res, next) {
-  var sql = `select * from task WHERE`;
+  var sql = `select * from task `;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
     console.log('record deleted');
   });
-  res.send({ message: "connected!" });
 });
 
 router.get('/notedel', function (req, res) {
-  var id=req.query.id;
-  console.log(id);
-  var sql = `DELETE FROM task WHERE id="${id}"`;
+  var title=req.query.title;
+  var sql = `delete FROM task WHERE title="${title}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     console.log('record deleted');
@@ -57,14 +55,11 @@ router.post('/update', (req, res) => {
 })
 
 router.post('/save', function (req, res) {
-var id=11;
   var title=req.query.title;
-  var note_type_id=1;
-  console.log(req.query);
-  var sql = `INSERT INTO task ( id, title, note_type_id) VALUES ("${id}","${title}","${note_type_id}")`;
+  var content=req.query.content;
+  var sql = `INSERT INTO task (title, content) VALUES ("${title}","${content}")`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
-    console.log(title);
     res.send("You got it Madhu!!!");
   });
 });

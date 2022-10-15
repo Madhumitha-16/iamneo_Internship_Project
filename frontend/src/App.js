@@ -4,6 +4,7 @@ import { useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { styled, useTheme } from "@mui/material/styles";
 import axios from "axios";
+import Logo from "./components/logo";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -53,12 +54,13 @@ function App() {
     });
   }
 
-  function deleteNotes(id) {
+  function deleteNotes(id,title) {
+    console.log(title);
     axios({
       method: "GET",
       url: "http://localhost:5000/notedel",
       params: {
-        id:5,
+        title:title
     },
 
     })
@@ -190,6 +192,7 @@ function App() {
           >
             <MenuIcon />
           </IconButton>
+          <Logo />
           <Typography variant="h6" noWrap component="div">
             Keep
           </Typography>
@@ -257,7 +260,7 @@ function App() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        
+       
         <List>
           {["Notes", "Remainder", "Edit Labels", "Archive", "Trash"].map(
             (text, index) => (
@@ -305,6 +308,7 @@ function App() {
         }
       />
       <CreateArea onAdd={addNote} />
+  
       {notes.map((note, index) => (
         <Note
           key={index}
