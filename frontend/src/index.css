@@ -5,7 +5,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: Roboto,Arial,sans-serif;
 }
 
 body {
@@ -15,11 +15,12 @@ body {
 .createNote {
   position: relative;
   width: 500px;
-  margin: 120px auto 50px auto;
+  margin: 100px auto 50px auto;
   background: #fff;
   padding: 7px;
   border-radius: 7px;
   box-shadow: 0 1px 7px rgb(128, 128, 128);
+  font-family: Roboto,Arial,sans-serif;
 }
 
 .createNote input {
@@ -30,13 +31,41 @@ body {
   outline: none;
   font-size: 1rem;
   resize: none;
+  font-family: Roboto,Arial,sans-serif;
 }
-
-.search{
-  background-color: #6f212b;
-  width: 0%;
+.search button{
+  left: 780px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:14px;
+  background:#F1F3F4;
+  color: rgb(19, 18, 18);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgb(165, 165, 165);
+  cursor: pointer;
+  outline: none;
 }
-
+.search input{
+  margin-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  padding-right: 100%;
+  padding-left: 10%;
+  border: none;
+  border-radius: 7px;
+  background-color: #F1F3F4;
+  outline: none;
+  font-size: 20px;
+  font-family: Roboto,Arial,sans-serif;
+}
+.search ::placeholder{
+  font-size: 20px;
+}
 .createNote textarea {
   width: 100%;
   border: none;
@@ -47,7 +76,7 @@ body {
   font-family: Roboto,Arial,sans-serif;
 }
 
-form button {
+.createNote button {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -67,19 +96,21 @@ form button {
 
 .note {
   background: #ffffff;
-  width: 240px;
+  width: 300px;
   border-radius: 7px;
   box-shadow: 0 2px 5px rgb(175, 175, 175);
   padding: 10px;
   margin: 16px;
   float: left;
-  margin-right: 0;
+  margin-left: 5%;
+  margin-top: 2%;
 
 }
 
-.note h1 {
+.note h2 {
   font-size: 1rem;
-  margin-bottom: 6px;
+  margin-bottom: 15px;
+  margin-left: 5px;
 }
 
 .note p {
@@ -119,7 +150,7 @@ form button {
   word-wrap: break-word;
 
 }
-.item-container h1 {
+.item-container h2 {
   font-size: 1rem;
   margin-bottom: 6px;
 }
@@ -129,4 +160,10 @@ form button {
   background: #fff;
   border-radius: 7px;
   box-shadow: 0 1px 7px rgb(128, 128, 128);
+}
+.item-container{
+  margin: 2% 0% 3%;
+}
+hr{
+  width: 5%;
 }

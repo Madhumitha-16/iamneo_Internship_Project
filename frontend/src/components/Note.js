@@ -12,7 +12,8 @@ function Note({ title, content, onDelete, id ,onEdit}) {
   return (
     
     <div className="note">
-      <h1 style={{fontFamily: "sans-serif",fontSize:"24px"}}>{title}</h1>
+    
+      <h2 style={{fontFamily: "sans-serif",fontSize:"24px"}}>{title}</h2>
       <p style={{color:"black"}}>{content}</p>
       <p style={{fontSize:"10px"}}>created at:{showTime} - {date}</p>
       <button onClick={() => onDelete(id,title)}>

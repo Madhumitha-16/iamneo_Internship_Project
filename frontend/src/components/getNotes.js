@@ -38,10 +38,11 @@ function onDelete(id,title) {
 }
   return (
     <div>
+      <h2>Notes</h2><hr></hr>
       <div className='item-container'>
         {note.map((notes) => (
           <div className='card' key={notes.id}>
-            <h1 style={{fontFamily: "sans-serif",fontSize:"24px"}}>{notes.title}</h1>
+            <h2 style={{fontFamily: "sans-serif",fontSize:"20px"}}>{notes.title}</h2>
             <p style={{color:"black"}}>{notes.content}</p><br></br>
             <button onClick={() => onDelete(notes.id,notes.title)}>
         <MdDelete size={25} />

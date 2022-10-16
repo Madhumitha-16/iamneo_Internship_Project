@@ -38,12 +38,12 @@ router.get('/notedel', function (req, res) {
 });
 
 router.post('/search', function (req, res) {
-  var title=req.body.title;
-  console.log(title)
-  var sql = `select * FROM task_new WHERE title="${title}"`;
+  var title=req.query.title;
+  var sql = `select * FROM task where title="${title}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
+    console.log(result);
   });
 });
 
