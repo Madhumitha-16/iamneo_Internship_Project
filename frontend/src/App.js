@@ -303,6 +303,7 @@ function App() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <div className="App">
       <CreateArea onAdd={addNote} />
+      
       <GetNotes />
       {notes.map((note, index) => (
         <Note

@@ -33,7 +33,7 @@ function onDelete(id,title) {
 
   })
   setNote((preValue) => {
-    return [preValue.filter((note, index) => index !==id)];
+    return [...preValue.filter((note, index) => index !==id)];
   });
 }
   return (
