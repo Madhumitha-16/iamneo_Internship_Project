@@ -2,6 +2,8 @@ import "./App.css";
 import * as React from "react";
 import { useState } from "react";
 import { alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
 import { styled, useTheme } from "@mui/material/styles";
 import axios from "axios";
 import logo from "../src/images/keep.png"
@@ -27,8 +29,6 @@ import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ReplayOutlinedIcon from "@mui/icons-material/ReplayOutlined";
 import ViewAgendaOutlinedIcon from "@mui/icons-material/ViewAgendaOutlined";
@@ -55,7 +55,7 @@ function App() {
       return [...prevValue, newNote];
     });
   }
-
+  
   function deleteNotes(id,title) {
     console.log(title);
     axios({
@@ -159,8 +159,7 @@ function App() {
     alignItems: "center",
     justifyContent: "center",
   }));
-  
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
@@ -172,6 +171,22 @@ function App() {
       },
     },
   }));
+
+ /* function searchButton(event) {
+    event.preventDefault();
+    let title=document.getElementById("title").value;
+    console.log(title);
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/search",
+      params: {
+        title:title,
+    },
+
+    }).then(res => {
+      console.log("works");
+    });
+  }*/
 
   const menuId = "primary-search-account-menu";
   return (
@@ -199,11 +214,23 @@ function App() {
           <Typography variant="h6" noWrap component="div">
             Keep
           </Typography>
+          {/* <div className="search">
+          <form action="search" method="post">
+            <input 
+            id="search" 
+            name="search" 
+            placeholder="Search" 
+            type="text"
+            ></input>
+            <button onClick={}> </button>
+          </form>
+          </div> */}
           <Search sx={{ backgroundColor:"#F1F3F4", width:"70px"}}>
             <SearchIconWrapper>
               <SearchIcon sx={{color:"#65696D"}}/>
             </SearchIconWrapper>
             <StyledInputBase
+              name="title"
               placeholder="Search"
               inputProps={{ "aria-label": "search" }}
             />
@@ -322,5 +349,4 @@ function App() {
     </Box>
   );
 }
-
 export default App;

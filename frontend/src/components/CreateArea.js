@@ -48,7 +48,7 @@ function CreateArea({ onAdd }) {
   }
 
   return (
-    <div>
+    <div className="createNote">
       <form action="/save" method="post">
         {isExpanded && (
           <input

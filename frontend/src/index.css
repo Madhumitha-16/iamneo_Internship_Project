@@ -12,30 +12,35 @@ body {
   background: #ffffff;
 }
 
-form {
+.createNote {
   position: relative;
-  width: 600px;
-  margin: 110px auto 50px auto;
+  width: 500px;
+  margin: 120px auto 50px auto;
   background: #fff;
   padding: 7px;
   border-radius: 7px;
   box-shadow: 0 1px 7px rgb(128, 128, 128);
 }
 
-form input {
+.createNote input {
   width: 100%;
   border: none;
-  padding: 4px 10px;
-  margin-bottom: 20px;
+  padding: 10px 10px;
+  margin-bottom: 10px;
   outline: none;
   font-size: 1rem;
   resize: none;
 }
 
-form textarea {
+.search{
+  background-color: #6f212b;
+  width: 0%;
+}
+
+.createNote textarea {
   width: 100%;
   border: none;
-  padding: 4px 10px;
+  padding: 10px 10px;
   outline: none;
   font-size: 1rem;
   resize: none;
@@ -69,6 +74,7 @@ form button {
   margin: 16px;
   float: left;
   margin-right: 0;
+
 }
 
 .note h1 {
@@ -116,4 +122,11 @@ form button {
 .item-container h1 {
   font-size: 1rem;
   margin-bottom: 6px;
+}
+.card{
+  position: relative;
+  width: 500px;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 1px 7px rgb(128, 128, 128);
 }

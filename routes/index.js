@@ -16,7 +16,6 @@ connection.connect(function (err) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send({ message: "We did it!" });
   res.render('index', { title: 'Express' });
 });
 
@@ -38,18 +37,36 @@ router.get('/notedel', function (req, res) {
   });
 });
 
+router.post('/search', function (req, res) {
+  var title=req.body.title;
+  console.log(title)
+  var sql = `select * FROM task_new WHERE title="${title}"`;
+  connection.query(sql,function(err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+router.get('/getData', function (req, res) {
+  var sql = `select * FROM task_new `;
+  connection.query(sql,function(err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
 router.post('/update', (req, res) => {
-  var id = req.query.id;
-  var title = req.query.title;
+  var id = req.body.id;
+  var title = req.body.title;
+  var content = req.body.content;
   if (title==" ") {
-    var sql = `UPDATE task set title="${title}" WHERE id="${id}"`;
+    var sql = `UPDATE task_new set content="${content}" WHERE id="${id}"`;
   } else {
-    var sql = `UPDATE task set title="${title}" WHERE id="${id}"`;
+    var sql = `UPDATE task_new set title="${title}" WHERE id="${id}"`;
   }
   connection.query(sql, function(err, result) {
     if (err) throw err;
-    console.log('record updated');
-    res.send("You got it Madhu!!!");
+    res.send('record updated');
   });
 })
 
