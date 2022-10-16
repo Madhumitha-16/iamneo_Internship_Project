@@ -6,6 +6,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import axios from "axios";
 import logo from "../src/images/keep.png"
 import Box from "@mui/material/Box";
+import { DragDropContext} from 'react-beautiful-dnd';
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -303,7 +304,7 @@ function App() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <div className="App">
       <CreateArea onAdd={addNote} />
-      
+    <DragDropContext>
       <GetNotes />
       {notes.map((note, index) => (
         <Note
@@ -314,6 +315,7 @@ function App() {
           onDelete={deleteNotes}
         />
       ))}
+    </DragDropContext>
     </div>
         <DrawerHeader />
       </Box>

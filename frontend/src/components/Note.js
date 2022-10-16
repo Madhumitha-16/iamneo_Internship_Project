@@ -19,7 +19,7 @@ function Note({ title, content, onDelete, id ,onEdit}) {
         <MdDelete size={25} />
       </button>
       <button onClick={() => onEdit(id) }>
-        <FaEdit size={20}  style={{marginTop:"3px"}} />
+        <FaEdit size={20}  style={{marginTop:"3px",}} />
       </button>
     </div>
   );
