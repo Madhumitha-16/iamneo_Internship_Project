@@ -15,7 +15,7 @@ body {
 form {
   position: relative;
   width: 600px;
-  margin: 32px auto 50px auto;
+  margin: 110px auto 50px auto;
   background: #fff;
   padding: 7px;
   border-radius: 7px;
@@ -94,11 +94,26 @@ form button {
   outline: none;
 }
 
-.count {
-  display: flex;
-  margin-top: 20px;
-  align-items: center;
-  justify-content: center;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+.item-container button{
+  position: relative;
+  float: right;
+  color: #f88651;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+.item-container p {
+  font-size: 1rem;
+  position: relative;
+  float: left;
+  color: #6f212b;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+}
+.item-container h1 {
+  font-size: 1rem;
+  margin-bottom: 6px;
 }

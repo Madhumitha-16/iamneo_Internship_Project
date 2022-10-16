@@ -4,7 +4,7 @@ import { useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { styled, useTheme } from "@mui/material/styles";
 import axios from "axios";
-import Logo from "./components/logo";
+import logo from "../src/images/keep.png"
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -35,7 +35,8 @@ import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import CreateArea from "./components/CreateArea";
 import Note from "./components/Note";
-import Count from "./components/Count";
+import GetNotes from "./components/getNotes";
+
 function App() {
   const drawerWidth = 240;
   const openedMixin = (theme) => ({
@@ -157,6 +158,7 @@ function App() {
     alignItems: "center",
     justifyContent: "center",
   }));
+  
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
@@ -192,7 +194,7 @@ function App() {
           >
             <MenuIcon />
           </IconButton>
-          <Logo />
+          <img src={logo} alt=""></img>
           <Typography variant="h6" noWrap component="div">
             Keep
           </Typography>
@@ -300,15 +302,8 @@ function App() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <div className="App">
-      <Count
-        count={
-          notes.length === 0
-            ? "No Note in Database"
-            : `Showing ${notes.length} Notes in Database`
-        }
-      />
       <CreateArea onAdd={addNote} />
-  
+      <GetNotes />
       {notes.map((note, index) => (
         <Note
           key={index}

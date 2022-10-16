@@ -25,7 +25,6 @@ router.get('/notes', function(req, res, next) {
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
-    console.log('record deleted');
   });
 });
 
