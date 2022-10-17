@@ -21,3 +21,6 @@ This clone app has the following functionalities:
 - View all notes
 - Update a note
 - Search a note based on title/task
+
+
+Visit live project - https://keepappclone.netlify.app/
