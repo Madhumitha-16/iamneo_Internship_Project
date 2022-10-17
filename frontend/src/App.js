@@ -1,6 +1,6 @@
 import "./App.css";
 import * as React from "react";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import axios from "axios";
 import logo from "../src/images/keep.png"
@@ -37,6 +37,12 @@ import GetNotes from "./components/getNotes";
 import { IoIosSearch } from "react-icons/io";
 
 function App() {
+  const [searchNotes, setSearchNotes] = useState([]);
+  
+  useEffect(() => {
+    setSearchNotes([]);
+  }, []);
+
   const drawerWidth = 240;
   const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -145,8 +151,8 @@ function App() {
     },
 
     }).then(res => {
-      const itemList = [res.data];
-      console.log(itemList);
+      setSearchNotes(res.data);
+      console.log(res.data);
     }).catch((err) => {
       console.log(err);
     });
@@ -186,7 +192,7 @@ function App() {
               placeholder="Search" 
               type="text"
             ></input>
-            <button className="search" onClick={searchButton}><IoIosSearch/> </button>
+            <button className="search" onClick={searchButton} ><IoIosSearch/> </button>
           </form>
           </div> 
           <Box sx={{ flexGrow: 1 }} />
@@ -286,7 +292,7 @@ function App() {
       <div className="App">
       <CreateArea onAdd={addNote} />
     <DragDropContext>
-      <GetNotes />
+      <GetNotes searchNotes={searchNotes}/>
       <h2 >New Note </h2><hr></hr>
       {notes.map((note, index) => (
         <Note
