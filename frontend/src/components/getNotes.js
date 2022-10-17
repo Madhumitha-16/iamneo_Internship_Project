@@ -38,7 +38,6 @@ function onDelete(id,title) {
 }
   return (
     <div>
-      <h2>Notes</h2><hr></hr>
       <div className='item-container'>
         {note.map((notes) => (
           <div className='card' key={notes.id}>
