@@ -37,9 +37,41 @@ router.get('/notedel', function (req, res) {
   });
 });
 
+router.delete('/notedel/{id}', function (req, res) {
+  var title=req.query.title;
+  var id=req.params;
+  var sql = `delete FROM task WHERE id="${id}"`;
+  connection.query(sql,function(err, result) {
+    if (err) throw err;
+    console.log('record deleted');
+  });
+});
+
+
 router.post('/search', function (req, res) {
   var title=req.query.title;
   var sql = `select * FROM task where title="${title}"`;
+  connection.query(sql,function(err, result) {
+    if (err) throw err;
+    res.send(result);
+    console.log(result);
+  });
+});
+
+
+router.post('/searchContent', function (req, res) {
+  var content=req.body.content;
+  var sql = `select * FROM task_new where content="${content}"`;
+  connection.query(sql,function(err, result) {
+    if (err) throw err;
+    res.send(result);
+    console.log(result);
+  });
+});
+
+router.post('/searchTitle', function (req, res) {
+  var title=req.body.title;
+  var sql = `select * FROM task_new where title="${title}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -59,11 +91,8 @@ router.post('/update', (req, res) => {
   var id = req.body.id;
   var title = req.body.title;
   var content = req.body.content;
-  if (title==" ") {
-    var sql = `UPDATE task_new set content="${content}" WHERE id="${id}"`;
-  } else {
-    var sql = `UPDATE task_new set title="${title}" WHERE id="${id}"`;
-  }
+    var sql = `UPDATE task_new set title="${title}" , content="${content}" WHERE id="${id}"`;
+    var sql = `UPDATE task_new set title="${title}" , content="${content}" WHERE id="${id}"`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     res.send('record updated');
