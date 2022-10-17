@@ -9,11 +9,11 @@ Tech Stack:
 
 REST API:
 
--GET - Get all notes 
--POST - Create a new note
--DELETE - Delete an existing note
--PUT - Update/Replace existing details 
--GET/:{id} - Get a single record (search)
+- GET - Get all notes 
+- POST - Create a new note
+- DELETE - Delete an existing note
+- PUT - Update/Replace existing details 
+- GET/:{id} - Get a single record (search)
 
 This clone app has the following functionalities:
 - Create a new note
