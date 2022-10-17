@@ -38,10 +38,6 @@ import { IoIosSearch } from "react-icons/io";
 
 function App() {
   const [searchNotes, setSearchNotes] = useState([]);
-  
-  useEffect(() => {
-    setSearchNotes([]);
-  }, []);
 
   const drawerWidth = 240;
   const openedMixin = (theme) => ({
