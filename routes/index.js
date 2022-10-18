@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
+require('dotenv').config();
 
 const connection = mysql.createConnection({
-  host: 'localhost', 
-  user: 'root',      
-  password: 'root',      
-  database: 'keep_app' 
+  host:  process.env.MYSQL_URL,
+  user: process.env.MYSQL_USERNAME ,      
+  password:  process.env.MYSQL_PASSWORD,    
+  database: process.env.MYSQL_DATABASE
 }); 
 
 connection.connect(function (err) {
