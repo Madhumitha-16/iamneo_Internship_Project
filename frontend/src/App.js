@@ -33,7 +33,7 @@ import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
 import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 import CreateArea from "./components/CreateArea";
 import Note from "./components/Note";
-import GetNotes from "./components/GetNotes";
+import GetNotes from "./components/getNotes";
 import { IoIosSearch } from "react-icons/io";
 
 function App() {
