@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
   host: process.env.MYSQL_URL, 
   user: process.env.MYSQL_USERNAME,      
   password: process.env.MYSQL_PASSWORD,     
-  database: process.env.MYSQL_DATABASE 
+  database: process.env.MYSQL_DATABASE
 }); 
 
 connection.connect(function (err) {
@@ -40,8 +40,6 @@ router.get('/notedel', function (req, res) {
 });
 
 router.delete('/notedel/{id}', function (req, res) {
-  let id=req.params;
-  let sql = `delete FROM task WHERE id=?`;
   connection.query(sql,[id],function(err, result) {
     if (err) throw err;
     console.log('record deleted');
@@ -59,29 +57,8 @@ router.post('/search', function (req, res) {
   });
 });
 
-
-router.post('/searchContent', function (req, res) {
-  let content=req.body.content;
-  let sql = `select * FROM task_new where content=?`;
-  connection.query(sql,[content],function(err, result) {
-    if (err) throw err;
-    res.send(result);
-    console.log(result);
-  });
-});
-
-router.post('/searchTitle', function (req, res) {
-  let title=req.body.title;
-  let sql = `select * FROM task_new where title=?`;
-  connection.query(sql,[title],function(err, result) {
-    if (err) throw err;
-    res.send(result);
-    console.log(result);
-  });
-});
-
 router.get('/getData', function (req, res) {
-  let sql = `select * FROM task_new `;
+  let sql = `select * FROM task `;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -92,7 +69,7 @@ router.post('/update', (req, res) => {
   let id = req.body.id;
   let title = req.body.title;
   let content = req.body.content;
-    let sql = `UPDATE task_new set title= ? , content=? WHERE id=?`;
+    let sql = `UPDATE task set title= ? , content=? WHERE id=?`;
   connection.query(sql,[title,content,id], function(err, result) {
     if (err) throw err;
     res.send('record updated');
