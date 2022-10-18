@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-require('dotenv').config();
 
 const connection = mysql.createConnection({
-  host:  process.env.MYSQL_URL,
-  user: process.env.MYSQL_USERNAME ,      
-  password:  process.env.MYSQL_PASSWORD,    
-  database: process.env.MYSQL_DATABASE
+  host: 'localhost', 
+  user: 'root',      
+  password: 'root',     
+  database: 'keep_app' 
 }); 
 
 connection.connect(function (err) {
@@ -15,7 +14,7 @@ connection.connect(function (err) {
     else console.log("database connection successfull!!!!");
 });
 
-
+/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
@@ -30,8 +29,8 @@ router.get('/notes', function(req, res, next) {
 
 router.get('/notedel', function (req, res) {
   let title=req.query.title;
-  let sql = "delete FROM task WHERE title= ? ";
-  connection.query(sql,[title],function(err, result) {
+  let sql = `delete FROM task WHERE title="${title}"`;
+  connection.query(sql,function(err, result) {
     if (err) throw err;
     console.log('record deleted');
     res.send("You got it Jai!!!");
@@ -40,8 +39,8 @@ router.get('/notedel', function (req, res) {
 
 router.delete('/notedel/{id}', function (req, res) {
   let id=req.params;
-  let sql = "delete FROM task WHERE id= ? ";
-  connection.query(sql,[id],function(err, result) {
+  let sql = `delete FROM task WHERE id="${id}"`;
+  connection.query(sql,function(err, result) {
     if (err) throw err;
     console.log('record deleted');
   });
@@ -50,8 +49,8 @@ router.delete('/notedel/{id}', function (req, res) {
 
 router.post('/search', function (req, res) {
   let title=req.query.title;
-  let sql = "select * FROM task where title= ?";
-  connection.query(sql,[title],function(err, result) {
+  let sql = `select * FROM task where title="${title}"`;
+  connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
     console.log(result);
@@ -61,8 +60,8 @@ router.post('/search', function (req, res) {
 
 router.post('/searchContent', function (req, res) {
   let content=req.body.content;
-  let sql = "select * FROM task_new where content= ? ";
-  connection.query(sql,[content],function(err, result) {
+  let sql = `select * FROM task_new where content="${content}"`;
+  connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
     console.log(result);
@@ -71,8 +70,8 @@ router.post('/searchContent', function (req, res) {
 
 router.post('/searchTitle', function (req, res) {
   let title=req.body.title;
-  let sql = "select * FROM task_new where title=?";
-  connection.query(sql,[title],function(err, result) {
+  let sql = `select * FROM task_new where title="${title}"`;
+  connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
     console.log(result);
@@ -91,8 +90,8 @@ router.post('/update', (req, res) => {
   let id = req.body.id;
   let title = req.body.title;
   let content = req.body.content;
-    let sql = "UPDATE task_new set title=? and content=? WHERE id=?";
-  connection.query(sql,[title,content,id], function(err, result) {
+    let sql = `UPDATE task_new set title="${title}" , content="${content}" WHERE id="${id}"`;
+  connection.query(sql, function(err, result) {
     if (err) throw err;
     res.send('record updated');
   });
@@ -101,8 +100,8 @@ router.post('/update', (req, res) => {
 router.post('/save', function (req, res) {
   let title=req.query.title;
   let content=req.query.content;
-  let sql = "INSERT INTO task (title, content) VALUES (?,?)";
-  connection.query(sql,[title],[content], function(err, result) {
+  let sql = `INSERT INTO task (title, content) VALUES ("${title}","${content}")`;
+  connection.query(sql, function(err, result) {
     if (err) throw err;
     res.send("You got it Madhu!!!");
   });

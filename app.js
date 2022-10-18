@@ -6,7 +6,7 @@ const logger = require('morgan');
 const cors=require('cors');
 const router = require('./routes/index');
 
-const app = express();
+let app = express();
 app.use( bodyParser.json() );      
 app.use(bodyParser.urlencoded({    
   extended: true
