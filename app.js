@@ -6,9 +6,6 @@ const logger = require('morgan');
 const cors=require('cors');
 const router = require('./routes/index');
 
-// let app = express();
-
-
 let app1 = express();  
 app1.disable("x-powered-by");
 
