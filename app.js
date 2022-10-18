@@ -6,7 +6,16 @@ const logger = require('morgan');
 const cors=require('cors');
 const router = require('./routes/index');
 
-let app = express();
+// let app = express();
+
+
+let app1 = express();  
+app1.disable("x-powered-by");
+
+let helmet = require("helmet");
+let app = express(); 
+app.use(helmet.hidePoweredBy());
+
 app.use( bodyParser.json() );      
 app.use(bodyParser.urlencoded({    
   extended: true
