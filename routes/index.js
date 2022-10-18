@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var mysql = require('mysql');
+const express = require('express');
+const router = express.Router();
+const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: 'localhost', // Replace with your host name
-  user: 'root',      // Replace with your database username
-  password: 'root',      // Replace with your database password
-  database: 'keep_app' // // Replace with your database Name
+  host: 'localhost', 
+  user: 'root',      
+  password: 'root',      
+  database: 'keep_app' 
 }); 
 
 connection.connect(function (err) {
@@ -14,13 +14,13 @@ connection.connect(function (err) {
     else console.log("database connection successfull!!!!");
 });
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 router.get('/notes', function(req, res, next) {
-  var sql = `select * from task `;
+  let sql = `select * from task `;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -28,8 +28,8 @@ router.get('/notes', function(req, res, next) {
 });
 
 router.get('/notedel', function (req, res) {
-  var title=req.query.title;
-  var sql = `delete FROM task WHERE title="${title}"`;
+  let title=req.query.title;
+  let sql = `delete FROM task WHERE title="${title}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     console.log('record deleted');
@@ -38,9 +38,8 @@ router.get('/notedel', function (req, res) {
 });
 
 router.delete('/notedel/{id}', function (req, res) {
-  var title=req.query.title;
-  var id=req.params;
-  var sql = `delete FROM task WHERE id="${id}"`;
+  let id=req.params;
+  let sql = `delete FROM task WHERE id="${id}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     console.log('record deleted');
@@ -49,8 +48,8 @@ router.delete('/notedel/{id}', function (req, res) {
 
 
 router.post('/search', function (req, res) {
-  var title=req.query.title;
-  var sql = `select * FROM task where title="${title}"`;
+  let title=req.query.title;
+  let sql = `select * FROM task where title="${title}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -60,8 +59,8 @@ router.post('/search', function (req, res) {
 
 
 router.post('/searchContent', function (req, res) {
-  var content=req.body.content;
-  var sql = `select * FROM task_new where content="${content}"`;
+  let content=req.body.content;
+  let sql = `select * FROM task_new where content="${content}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -70,8 +69,8 @@ router.post('/searchContent', function (req, res) {
 });
 
 router.post('/searchTitle', function (req, res) {
-  var title=req.body.title;
-  var sql = `select * FROM task_new where title="${title}"`;
+  let title=req.body.title;
+  let sql = `select * FROM task_new where title="${title}"`;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -80,7 +79,7 @@ router.post('/searchTitle', function (req, res) {
 });
 
 router.get('/getData', function (req, res) {
-  var sql = `select * FROM task_new `;
+  let sql = `select * FROM task_new `;
   connection.query(sql,function(err, result) {
     if (err) throw err;
     res.send(result);
@@ -88,11 +87,10 @@ router.get('/getData', function (req, res) {
 });
 
 router.post('/update', (req, res) => {
-  var id = req.body.id;
-  var title = req.body.title;
-  var content = req.body.content;
-    var sql = `UPDATE task_new set title="${title}" , content="${content}" WHERE id="${id}"`;
-    var sql = `UPDATE task_new set title="${title}" , content="${content}" WHERE id="${id}"`;
+  let id = req.body.id;
+  let title = req.body.title;
+  let content = req.body.content;
+    let sql = `UPDATE task_new set title="${title}" , content="${content}" WHERE id="${id}"`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     res.send('record updated');
@@ -100,9 +98,9 @@ router.post('/update', (req, res) => {
 })
 
 router.post('/save', function (req, res) {
-  var title=req.query.title;
-  var content=req.query.content;
-  var sql = `INSERT INTO task (title, content) VALUES ("${title}","${content}")`;
+  let title=req.query.title;
+  let content=req.query.content;
+  let sql = `INSERT INTO task (title, content) VALUES ("${title}","${content}")`;
   connection.query(sql, function(err, result) {
     if (err) throw err;
     res.send("You got it Madhu!!!");
