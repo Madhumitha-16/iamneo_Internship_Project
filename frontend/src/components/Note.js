@@ -13,9 +13,9 @@ function Note({ title, content, onDelete, id ,onEdit}) {
     
     <div className="note">
     
-      <h2 style={{fontFamily: "sans-serif",fontSize:"24px"}}>{title}</h2>
+      <h2 style={{fontFamily: "sans-serif",fontSize:"28px"}}>{title}</h2>
       <p style={{color:"black"}}>{content}</p>
-      <p style={{fontSize:"10px"}}>created at:{showTime} - {date}</p>
+      <p style={{fontSize:"15px"}}>created at:{showTime} - {date}</p>
       <button onClick={() => onDelete(id,title)}>
         <MdDelete size={25} />
       </button>
