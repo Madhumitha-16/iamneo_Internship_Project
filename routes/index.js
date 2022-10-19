@@ -39,7 +39,7 @@ router.get('/notedel', function (req, res) {
   });
 });
 
-router.delete('/notedel/{id}', function (req, res) {
+router.delete('/notedel/{:id}', function (req, res) {
   connection.query(sql,[id],function(err, result) {
     if (err) throw err;
     console.log('record deleted');
@@ -56,6 +56,7 @@ router.post('/search', function (req, res) {
     console.log(result);
   });
 });
+
 
 router.get('/getData', function (req, res) {
   let sql = `select * FROM task `;

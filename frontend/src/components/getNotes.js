@@ -47,9 +47,10 @@ const [note, setNote] = useState([]);
                 <h2 style={{ fontFamily: "sans-serif", fontSize: "20px" }}>
                   {notes.title}
                 </h2>
-                <p style={{ color: "black" }}>{notes.content}</p>
+                <h4 style={{ color: "black",fontFamily: "sans-serif", fontSize: "18px" }}>{notes.content}</h4>
+                <p style={{ color: "#6f212b",fontSize:"14px" }}>created at : {notes.updatedAt.slice(0,10) }</p>
+                <p style={{ color: "#6f212b",fontSize:"14px" }}> {notes.updatedAt.slice(11,19)}</p>
                 <br></br>
-                <p style={{ color: "black" }}>{notes.createdAt}</p>
                 <button onClick={() => onDelete(notes.id, notes.title)}>
                   <MdDelete size={25} />
                 </button>
